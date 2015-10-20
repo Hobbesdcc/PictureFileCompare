@@ -8,9 +8,12 @@ public class PictureFileCompare {
     {
 
         // first directory path here
-        String path1 = "C:\\Folder1";
+        //String path1 = "C:\\Users\\dchamot\\Desktop\\CleanUp\\RAW"; //RAW
+        String path1 = "E:\\2015\\2015-10-09\\RAW"; //RAW
+       
         // second directory path here
-        String path2 = "C:\\Folder2"; 
+        //String path2 = "C:\\Users\\dchamot\\Desktop\\CleanUp\\JPG"; //JPEG
+        String path2 = "E:\\2015\\2015-10-09\\JPG"; //JPG
 
         //File class is very important!
         File folder1 = new File(path1);
@@ -97,7 +100,7 @@ public class PictureFileCompare {
     			fileToMove.renameTo(new File(path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)));
         	}
         	
-        	System.out.print("\n\n\n--------\n");
+        	System.out.print("\n\n\n----------\n");
         }
         //*/
 
