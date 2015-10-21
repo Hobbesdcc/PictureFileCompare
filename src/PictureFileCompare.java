@@ -120,4 +120,17 @@ public class PictureFileCompare {
 
         return result;
     }
+    
+	public void fileStructureCreator(){
+		
+		//* debug info
+		//*/
+	}
+	
+	public void fileSorter(){
+		
+		//* debug info
+		//*/
+	}
+    
 }
