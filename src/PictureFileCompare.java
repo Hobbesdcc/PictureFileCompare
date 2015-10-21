@@ -4,20 +4,31 @@ import java.util.*;
 
 public class PictureFileCompare {
 
+	private String path1;
+	private String path2;
+
+	
+	//static Scanner scan = new Scanner(System.in); 
+	
+	
+	//Constructor For "Encryption" Class
+	public PictureFileCompare(String path1,String path2) // Constructor
+	{
+		path1 = this.path1;
+		path2 = this.path2;
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args) 
     {
 
-        // first directory path here
-        //String path1 = "C:\\Users\\dchamot\\Desktop\\CleanUp\\RAW"; //RAW
-        String path1 = "E:\\2015\\2015-10-09\\RAW"; //RAW
-       
-        // second directory path here
-        //String path2 = "C:\\Users\\dchamot\\Desktop\\CleanUp\\JPG"; //JPEG
-        String path2 = "E:\\2015\\2015-10-09\\JPG"; //JPG
+    	PictureFileCompare fileObject = new PictureFileCompare("E:\\2015\\2015-10-09\\RAW","E:\\2015\\2015-10-09\\JPG");
 
+    	
         //File class is very important!
-        File folder1 = new File(path1);
-        File folder2 = new File(path2);
+        File folder1 = new File(PictureFileCompare.path1);
+        File folder2 = new File(PictureFileCompare.path2);
 
         //it gets the list of files for you!
         File[] listOfFiles1 = folder1.listFiles(); 
