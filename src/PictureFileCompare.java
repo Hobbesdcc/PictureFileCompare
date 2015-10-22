@@ -24,7 +24,7 @@ public class PictureFileCompare {
     public static void main(String[] args) 
     {
     
-    	//PictureFileCompare fileObject = new PictureFileCompare("E:\\2015\\2015-10-09\\RAW","E:\\2015\\2015-10-09\\JPG");
+    	//Main directory HERE
     	PictureFileCompare fileObject = new PictureFileCompare("C:\\Users\\dchamot\\Desktop\\CleanUp");
 
     	createFolder(fileObject.path1);
@@ -63,20 +63,17 @@ public class PictureFileCompare {
             }
         }
        
-        String tempFileName1 = "";
-        String tempFileName2 = "";
-        boolean foundFile = false;
+        //Strings and boolean to temporarily store FileNames in order to compare them
+        String tempFileName1 = ""; //temporarily FileName 1
+        String tempFileName2 = ""; //temporarily FileName 2
+        boolean foundFile = false; //If file is found, then True
         
-        //*
         for (int i = 0; i < fileNames1.size(); i++)
         {
         	System.out.print("\n\n----------\n");
         	tempFileName1 = fileNames1.get(i);
         	tempFileName1 = tempFileName1.substring(0, tempFileName1.lastIndexOf('.'));
         	System.out.print( "i:" + i + " NameF1: " + tempFileName1 + "\n");
-              	
-        	//*
-        	
         	
         	foundFile = false;
         	for (int n = 0; n < fileNames2.size(); n++)
@@ -84,11 +81,8 @@ public class PictureFileCompare {
         		tempFileName2 = "";
         		tempFileName2 = fileNames2.get(n);
         		tempFileName2 = tempFileName2.substring(0, tempFileName2.lastIndexOf('.'));
-        		System.out.print("\n\nn:" + n);
         		
-        		//*
-        		
-        		System.out.print(" NameF1: " + tempFileName1 + ", NameF2: "+ tempFileName2);
+        		System.out.print("\n\nn:" + n +" NameF1: " + tempFileName1 + ", NameF2: "+ tempFileName2); //Debug
         		
         		if (tempFileName1.equals(tempFileName2) && !foundFile)
         		{
@@ -97,10 +91,7 @@ public class PictureFileCompare {
         			n = fileNames2.size(); 
         		
         		}
-        		//*/
-        		
              }
-        	 //*/
         	
         	if (!foundFile)
         	{
