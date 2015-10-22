@@ -4,7 +4,7 @@ import java.util.*;
 
 public class PictureFileCompare {
 
-	private String path;
+	private String pathMain;
 	private String path1;
 	private String path2;
 
@@ -13,7 +13,7 @@ public class PictureFileCompare {
 	//Constructor For "PictureFileCompare" Class
 	public PictureFileCompare(String path) // Constructor
 	{
-		path = path;
+		pathMain = path;
 		path1 = path + "\\RAW";
 		path2 = path + "\\JPG";
 		
@@ -27,8 +27,9 @@ public class PictureFileCompare {
     	//PictureFileCompare fileObject = new PictureFileCompare("E:\\2015\\2015-10-09\\RAW","E:\\2015\\2015-10-09\\JPG");
     	PictureFileCompare fileObject = new PictureFileCompare("C:\\Users\\dchamot\\Desktop\\CleanUp");
 
-    	fileObject.fileStructureCreator();
-    	//fileObject.fileSorter();
+    	createFolder(fileObject.path1);
+    	createFolder(fileObject.path2);
+    	fileObject.fileSorter();
     	
         //File class
         File folder1 = new File(fileObject.path1);
@@ -48,7 +49,7 @@ public class PictureFileCompare {
 
             if (listOfFiles1[i].isFile()) 
             {
-                fileNames1.add(listOfFiles1[i].getName());//wow
+                fileNames1.add(listOfFiles1[i].getName());
             }
         }
 
@@ -58,7 +59,7 @@ public class PictureFileCompare {
 
             if (listOfFiles2[i].isFile()) 
             {
-                fileNames2.add(listOfFiles2[i].getName()); //seriously wow
+                fileNames2.add(listOfFiles2[i].getName());
             }
         }
        
@@ -69,6 +70,7 @@ public class PictureFileCompare {
         //*
         for (int i = 0; i < fileNames1.size(); i++)
         {
+        	System.out.print("\n\n----------\n");
         	tempFileName1 = fileNames1.get(i);
         	tempFileName1 = tempFileName1.substring(0, tempFileName1.lastIndexOf('.'));
         	System.out.print( "i:" + i + " NameF1: " + tempFileName1 + "\n");
@@ -102,20 +104,18 @@ public class PictureFileCompare {
         	
         	if (!foundFile)
         	{
-        		System.out.print(" (File Not Found: " + fileNames1.get(i) + ")");
-        		String path = fileObject.path1 + "\\" + "ToRemove";
+        		System.out.print("\n(File Not Found: " + fileNames1.get(i) + ")");
+        		
+        		String path = fileObject.path1 + "\\" + "NoJPG";
     			createFolder(path);
     			
-    			
     			System.out.print("\n 1 Orignal Location >>> " +  fileObject.path1 + "\\" + fileNames1.get(i)); //Debug
+    			System.out.print("\n 2 Move Location >>> " +  fileObject.path1 + "\\" + "NoJPG" + "\\" + fileNames1.get(i)); //Debug
+    			
     			File fileToMove  = new File( fileObject.path1 + "\\" + fileNames1.get(i));
-    			
-    			
-    			System.out.print("\n 2 Move Location >>> " +  fileObject.path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)); //Debug
-    			fileToMove.renameTo(new File(fileObject.path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)));
+    			fileToMove.renameTo(new File(fileObject.path1 + "\\" + "NoJPG" + "\\" + fileNames1.get(i)));
         	}
         	
-        	System.out.print("\n\n\n----------\n");
         }
         //*/
 
@@ -129,72 +129,65 @@ public class PictureFileCompare {
         File directory = new File(theFilePath);
 
         if (directory.exists()) {
-            System.out.println("\n(Folder already exists)");
+            System.out.println("\n\n(Folder already exists: " + theFilePath +")");
         } else {
             result = directory.mkdirs();
         }
 
         return result;
     }
-
     
-	public void fileStructureCreator(){
-
-		File directory1 = new File(this.path1);
-		File directory2 = new File(this.path2);
-		
-		if (directory1.exists()) {
-	            System.out.println("\n(Folder already exists)");
-	     
-		 	} else {
-	            directory1.mkdirs();
-	        }
-		
-		if (directory2.exists()) {
-            System.out.println("\n(Folder already exists)");
-     
-		 	} else {
-	            directory2.mkdirs();
-	        }
-	}
-	
+    
 	public void fileSorter(){
 		
 
         //File class
-        //File folder1 = new File(this.path);
+        File mainDirectory = new File(this.pathMain);
+		//System.out.print("(this.Path: " + this.pathMain + ")");
 
         //it gets the list of files
-        //File[] listOfFiles1 = folder1.listFiles(); 
+        File[] listOfFiles1 = mainDirectory.listFiles(); 
 
         //Store the file names as Strings
-        //ArrayList<String> fileNames1 = new ArrayList<String>();
+        ArrayList<String> fileNames1 = new ArrayList<String>();
 
-        /*//get file names from first directory
-        
+        //*get file names from first directory
         for (int i = 0; i < listOfFiles1.length; i++) 
         {
 
             if (listOfFiles1[i].isFile()) 
             {
-                fileNames1.add(listOfFiles1[i].getName());//wow
+                fileNames1.add(listOfFiles1[i].getName());
             }
         }
         
-        /*
+        //*
         for (int i = 0; i < fileNames1.size(); i++)
         {
         	String tempFileName1 = fileNames1.get(i);
         	
-            if(tempFileName1.endsWith(".txt")){
+            if(tempFileName1.endsWith(".cr2")){
             	
-            	System.out.print(" (txt File: " + fileNames1.get(i) + ")");
-            	//File fileToMove  = new File( fileObject.path1 + "\\" + fileNames1.get(i));
+            	System.out.print("\n\nTXT File Found ("+i+"): " + fileNames1.get(i) +"\n");
+    			System.out.print("\n 1 Original Location >>> " +  this.pathMain + "\\" + fileNames1.get(i)); //Debug
+    			System.out.print("\n 2 Move Location >>> " +  this.path1 + "\\" + fileNames1.get(i)); //Debug
+    			
+    			File fileToMove  = new File(this.pathMain + "\\" + fileNames1.get(i));
+    			fileToMove.renameTo(new File(this.path1 + "\\" + fileNames1.get(i)));
             }
-         //*/
-
+            
+            if(tempFileName1.endsWith(".jpg")){
+            	
+            	System.out.print("\n\nTXT File Found ("+i+"): " + fileNames1.get(i) +"\n");
+            	System.out.print("\n 1 Original Location >>> " +  this.pathMain + "\\" + fileNames1.get(i)); //Debug
+    			System.out.print("\n 2 Move Location >>> " +  this.path1 + "\\" + fileNames1.get(i)); //Debug
+            	
+    			File fileToMove  = new File(this.pathMain + "\\" + fileNames1.get(i));
+    			fileToMove.renameTo(new File(this.path2 + "\\" + fileNames1.get(i)));
+            }
         }
-  
+        
+        //*/
 	}
     
 }
