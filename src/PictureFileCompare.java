@@ -4,38 +4,41 @@ import java.util.*;
 
 public class PictureFileCompare {
 
+	private String path;
 	private String path1;
 	private String path2;
 
-	
 	//static Scanner scan = new Scanner(System.in); 
 	
-	
 	//Constructor For "PictureFileCompare" Class
-	public PictureFileCompare(String pathA,String pathB) // Constructor
+	public PictureFileCompare(String path) // Constructor
 	{
-		path1 = pathA;
-		path2 = pathB;
+		path = path;
+		path1 = path + "\\RAW";
+		path2 = path + "\\JPG";
+		
 	}
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args) 
     {
-
+    
     	//PictureFileCompare fileObject = new PictureFileCompare("E:\\2015\\2015-10-09\\RAW","E:\\2015\\2015-10-09\\JPG");
-    	PictureFileCompare fileObject = new PictureFileCompare("C:\\Users\\dchamot\\Desktop\\CleanUp\\RAW","C:\\Users\\dchamot\\Desktop\\CleanUp\\JPG");
+    	PictureFileCompare fileObject = new PictureFileCompare("C:\\Users\\dchamot\\Desktop\\CleanUp");
 
+    	fileObject.fileStructureCreator();
+    	//fileObject.fileSorter();
     	
-        //File class is very important!
+        //File class
         File folder1 = new File(fileObject.path1);
         File folder2 = new File(fileObject.path2);
 
-        //it gets the list of files for you!
+        //it gets the list of files
         File[] listOfFiles1 = folder1.listFiles(); 
         File[] listOfFiles2 = folder2.listFiles(); 
 
-        //we'll need these to store the file names as Strings
+        //Store the file names as Strings
         ArrayList<String> fileNames1 = new ArrayList<String>();
         ArrayList<String> fileNames2 = new ArrayList<String>();
 
@@ -84,7 +87,7 @@ public class PictureFileCompare {
         		//*
         		
         		System.out.print(" NameF1: " + tempFileName1 + ", NameF2: "+ tempFileName2);
-        		//if (tempFileName1 == tempFileName2)
+        		
         		if (tempFileName1.equals(tempFileName2) && !foundFile)
         		{
         			System.out.print(" (Found it here!)");
@@ -117,8 +120,9 @@ public class PictureFileCompare {
         //*/
 
     }
+
     
-    private static boolean createFolder(String theFilePath)
+    public static boolean createFolder(String theFilePath)
     {
         boolean result = false;
 
@@ -132,17 +136,65 @@ public class PictureFileCompare {
 
         return result;
     }
+
     
 	public void fileStructureCreator(){
+
+		File directory1 = new File(this.path1);
+		File directory2 = new File(this.path2);
 		
-		//* debug info
-		//*/
+		if (directory1.exists()) {
+	            System.out.println("\n(Folder already exists)");
+	     
+		 	} else {
+	            directory1.mkdirs();
+	        }
+		
+		if (directory2.exists()) {
+            System.out.println("\n(Folder already exists)");
+     
+		 	} else {
+	            directory2.mkdirs();
+	        }
 	}
 	
 	public void fileSorter(){
 		
-		//* debug info
-		//*/
+
+        //File class
+        //File folder1 = new File(this.path);
+
+        //it gets the list of files
+        //File[] listOfFiles1 = folder1.listFiles(); 
+
+        //Store the file names as Strings
+        //ArrayList<String> fileNames1 = new ArrayList<String>();
+
+        /*//get file names from first directory
+        
+        for (int i = 0; i < listOfFiles1.length; i++) 
+        {
+
+            if (listOfFiles1[i].isFile()) 
+            {
+                fileNames1.add(listOfFiles1[i].getName());//wow
+            }
+        }
+        
+        /*
+        for (int i = 0; i < fileNames1.size(); i++)
+        {
+        	String tempFileName1 = fileNames1.get(i);
+        	
+            if(tempFileName1.endsWith(".txt")){
+            	
+            	System.out.print(" (txt File: " + fileNames1.get(i) + ")");
+            	//File fileToMove  = new File( fileObject.path1 + "\\" + fileNames1.get(i));
+            }
+         //*/
+
+        }
+  
 	}
     
 }
