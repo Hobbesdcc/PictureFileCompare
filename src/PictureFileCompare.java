@@ -11,11 +11,11 @@ public class PictureFileCompare {
 	//static Scanner scan = new Scanner(System.in); 
 	
 	
-	//Constructor For "Encryption" Class
-	public PictureFileCompare(String path1,String path2) // Constructor
+	//Constructor For "PictureFileCompare" Class
+	public PictureFileCompare(String pathA,String pathB) // Constructor
 	{
-		path1 = this.path1;
-		path2 = this.path2;
+		path1 = pathA;
+		path2 = pathB;
 	}
 	
 	
@@ -23,12 +23,13 @@ public class PictureFileCompare {
     public static void main(String[] args) 
     {
 
-    	PictureFileCompare fileObject = new PictureFileCompare("E:\\2015\\2015-10-09\\RAW","E:\\2015\\2015-10-09\\JPG");
+    	//PictureFileCompare fileObject = new PictureFileCompare("E:\\2015\\2015-10-09\\RAW","E:\\2015\\2015-10-09\\JPG");
+    	PictureFileCompare fileObject = new PictureFileCompare("C:\\Users\\dchamot\\Desktop\\CleanUp\\RAW","C:\\Users\\dchamot\\Desktop\\CleanUp\\JPG");
 
     	
         //File class is very important!
-        File folder1 = new File(PictureFileCompare.path1);
-        File folder2 = new File(PictureFileCompare.path2);
+        File folder1 = new File(fileObject.path1);
+        File folder2 = new File(fileObject.path2);
 
         //it gets the list of files for you!
         File[] listOfFiles1 = folder1.listFiles(); 
@@ -99,16 +100,16 @@ public class PictureFileCompare {
         	if (!foundFile)
         	{
         		System.out.print(" (File Not Found: " + fileNames1.get(i) + ")");
-        		String path = path1 + "\\" + "ToRemove";
+        		String path = fileObject.path1 + "\\" + "ToRemove";
     			createFolder(path);
     			
     			
-    			System.out.print("\n 1 Orignal Location >>> " +  path1 + "\\" + fileNames1.get(i)); //Debug
-    			File fileToMove  = new File( path1 + "\\" + fileNames1.get(i));
+    			System.out.print("\n 1 Orignal Location >>> " +  fileObject.path1 + "\\" + fileNames1.get(i)); //Debug
+    			File fileToMove  = new File( fileObject.path1 + "\\" + fileNames1.get(i));
     			
     			
-    			System.out.print("\n 2 Move Location >>> " +  path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)); //Debug
-    			fileToMove.renameTo(new File(path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)));
+    			System.out.print("\n 2 Move Location >>> " +  fileObject.path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)); //Debug
+    			fileToMove.renameTo(new File(fileObject.path1 + "\\" + "ToRemove" + "\\" + fileNames1.get(i)));
         	}
         	
         	System.out.print("\n\n\n----------\n");
