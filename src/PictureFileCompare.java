@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -13,21 +14,27 @@ public class PictureFileCompare {
 	private String path3;
 	private File logfile;
 
+	private String versionNumber;
+
 	static Scanner scan = new Scanner(System.in); 
 	
 	//Constructor For "PictureFileCompare" Class
 	public PictureFileCompare() // Constructor
 	{
+		//Version Number!!
+		versionNumber ="v1.0 (2015-10-24)";
+		
 		pathMain = "";
 		path1 = "";
 		path2 = "";
 		path3 = "";
+		
 		//file = new File("");
 	}
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-    public static void main(String[] args) throws FileNotFoundException
+    public static void main(String[] args) throws IOException
     {
     	//Main directory HERE
     	PictureFileCompare fileObject = new PictureFileCompare();
@@ -174,6 +181,9 @@ public class PictureFileCompare {
         //LogFile Close
         printWriter.flush(); // Flush printWriter File
         printWriter.close(); // Close printWriter File
+        
+        System.out.print("\n\nFinished: Press enter to exit..");
+        System.in.read();
     }
     
     
@@ -185,10 +195,12 @@ public class PictureFileCompare {
     
     public void logFileSetup(PrintWriter printWriter) {
     	output("** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)\n", System.out, printWriter);
+    	output("** Version Number: "+ this.versionNumber +"\n\n", System.out, printWriter);
+    	
     	output("** LOG File: "+ this.logfile +"\n\n", System.out, printWriter);
     	output("----- logFileSetup() -----", System.out, printWriter);
     	output("\nDirectory used: " + this.pathMain, System.out, printWriter);
-    	output("\nDate & Time: " + LocalDateTime.now(), System.out, printWriter);
+    	output("\nDate & Time of Log: " + LocalDateTime.now(), System.out, printWriter);
     	output("\n--------------------------\n\n", System.out, printWriter);
     }
     
@@ -196,7 +208,7 @@ public class PictureFileCompare {
     public void inputDirectory(){
 		
     	System.out.print("Format e.g. ''C:\\Users\\Dave42\\Desktop\\Picturefolder'' \n");
-    	System.out.print("Input/Paste Main Directory:");
+    	System.out.print("Input/Drop Main Directory here:");
 		scan = new Scanner(System.in); // open a new Scanner name it "scan"
 		this.pathMain = scan.nextLine(); // set [object being acted on] = [what was input into scanner]
 		
