@@ -1,10 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class PictureFileCompare {
@@ -13,6 +11,7 @@ public class PictureFileCompare {
 	private String path1;
 	private String path2;
 	private String path3;
+	private File logfile;
 
 	static Scanner scan = new Scanner(System.in); 
 	
@@ -23,40 +22,52 @@ public class PictureFileCompare {
 		path1 = "";
 		path2 = "";
 		path3 = "";
+		//file = new File("");
 	}
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-    public static void main(String[] args) throws IOException 
+    public static void main(String[] args) throws FileNotFoundException
     {
-    	//PrintStream out = new PrintStream(new FileOutputStream("test.txt", true));
-        //System.setOut(out); 	
-    
     	//Main directory HERE
     	PictureFileCompare fileObject = new PictureFileCompare();
     	
     	//Ask for Main directory input
     	fileObject.inputDirectory();
     	
+    	
     	//Set Up Log File
-    	File file = new File(fileObject.pathMain+"\\Log.txt"); //Sets up file
-    	file.getParentFile().mkdirs(); //Makes new Directory for file
-    	FileWriter writer = new FileWriter(file, true); //Makes the file writable 
-    	PrintWriter printWriter = new PrintWriter(writer); //Set steam to write to file
-    	//output("your message!", System.out, printWriter); //DebugCode Standard format
-
+    	//Check to see if log exists, if it uses that file, if it dose goes to the next number
+    	for (int c = 1; c < 100; c++)
+        {
+    		//starts stepping though files until it finds one that dose not exist
+    		fileObject.logfile = new File(fileObject.pathMain+"\\Log" + c + ".txt");
+    		boolean exists = fileObject.logfile.exists();
+    		
+    		//check to see if file does not exist, if so breaks the loop
+    		if (!exists){
+    			c = 100;
+    		}
+        }
+    	
+    	//Set Up Log File, Format: output("your message!", System.out, printWriter)
+    	fileObject.logfile.getParentFile().mkdirs(); //Makes new Directory for file
+    	PrintWriter printWriter = new PrintWriter(fileObject.logfile); //Set steam to write to file
+    	
+    	//Sets up Log File header
+    	fileObject.logFileSetup(printWriter);
     	
     	//*//remove 1st "/" to Turn off File maker and sorter <<<<
     	//Make New Folders in main directory if they are not there
     	output("\n--- createFolder() ---\n\n", System.out, printWriter); //DebugCode
-    	createFolder(fileObject.path1); // RAW folder
-    	createFolder(fileObject.path2); // JPG folder
-    	createFolder(fileObject.path3); // MOV folder
+    	createFolder(fileObject.path1,printWriter); // RAW folder
+    	createFolder(fileObject.path2,printWriter); // JPG folder
+    	createFolder(fileObject.path3,printWriter); // MOV folder
     	output("----------------------\n\n", System.out, printWriter); //DebugCode
     	
     	//Sort all files into folders based on extension
     	output("\n---- fileSorter() ----", System.out, printWriter); //DebugCode
-    	fileObject.fileSorter();
+    	fileObject.fileSorter(printWriter);
     	output("\n----------------------\n", System.out, printWriter); //DebugCode
     	//*/
     	
@@ -131,8 +142,8 @@ public class PictureFileCompare {
         		if (tempFileName1.equals(tempFileName2) && !foundFile)
         		{
         			output(" (Found it!)\n", System.out, printWriter); //debug
-        			foundFile = true; //foundFile ture
-        			n = fileNames2.size(); //ends the loop by maxing out "n" counter
+        			foundFile = true; //foundFile true
+        			n = fileNames2.size(); //ends the loop by max out "n" counter
         		}
              }
         	
@@ -146,7 +157,7 @@ public class PictureFileCompare {
         		String saveFile = "NoMatch";
 
         		//Make New folder to move files that don't have a match
-        		createFolder(fileObject.path1 + "\\" + saveFile);
+        		createFolder(fileObject.path1 + "\\" + saveFile,printWriter);
         		
     			//DebugCode
         		output("Orignal Location >>> " +  fileObject.path1 + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
@@ -167,9 +178,18 @@ public class PictureFileCompare {
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    private static void output(final String msg, PrintStream out1, PrintWriter out2) {        
+    public static void output(final String msg, PrintStream out1, PrintWriter out2) {        
         out1.print(msg);
         out2.print(msg);
+    }
+    
+    public void logFileSetup(PrintWriter printWriter) {
+    	output("** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)\n", System.out, printWriter);
+    	output("** LOG File: "+ this.logfile +"\n\n", System.out, printWriter);
+    	output("----- logFileSetup() -----", System.out, printWriter);
+    	output("\nDirectory used: " + this.pathMain, System.out, printWriter);
+    	output("\nDate & Time: " + LocalDateTime.now(), System.out, printWriter);
+    	output("\n--------------------------\n\n", System.out, printWriter);
     }
     
     
@@ -178,10 +198,9 @@ public class PictureFileCompare {
     	System.out.print("Format e.g. ''C:\\Users\\Dave42\\Desktop\\Picturefolder'' \n");
     	System.out.print("Input/Paste Main Directory:");
 		scan = new Scanner(System.in); // open a new Scanner name it "scan"
-		this.pathMain = "C:\\Users\\dchamot\\Desktop\\Clean Up";
-		//this.pathMain = scan.nextLine(); // set [object being acted on] = [what was input into scanner]
+		this.pathMain = scan.nextLine(); // set [object being acted on] = [what was input into scanner]
 		
-		
+		//Setup the other folder paths
 		this.path1 = this.pathMain + "\\RAW";
 		this.path2 = this.pathMain + "\\JPG";
 		this.path3 = this.pathMain + "\\MOV";
@@ -201,30 +220,28 @@ public class PictureFileCompare {
 		System.out.print(this.pathMain);
 		System.out.print("\n-----------------------\n\n");
 		//*/
-		
-		
-
 	}
     
     
-    public static boolean createFolder(String theFilePath)
+    public static boolean createFolder(String theFilePath, PrintWriter printWriter)
     {
         boolean result = false;
 
         File directory = new File(theFilePath);
         
         if (directory.exists()) {
-        	 System.out.print("(Folder already exists: " + theFilePath +")");
+        	output("(Folder already exists: " + theFilePath +")\n", System.out, printWriter);
         } else {
             result = directory.mkdirs();
-            System.out.print("(New Folder Made: " + theFilePath +")");
+            output("(New Folder Made: " + theFilePath +")\n", System.out, printWriter);
         }
 
         return result;
+        
     }
     
     
-	public void fileSorter(){
+	public void fileSorter(PrintWriter printWriter){
 		
 
         //File class
@@ -272,9 +289,9 @@ public class PictureFileCompare {
     		}  		 
              		
     		//DebugCode	
-			System.out.print("\n\n("+ tempFileType + ") File Found (i:"+i+"): " + fileNames1.get(i));
-			System.out.print("\nOriginal Location >>> " +  this.pathMain + "\\" + fileNames1.get(i)); //Debug
-			System.out.print("\nMove Location     >>> " +  tempPath + "\\" + fileNames1.get(i)); //Debug
+    		output("\n\n("+ tempFileType + ") File Found (i:"+i+"): " + fileNames1.get(i), System.out, printWriter); //Debug
+    		output("\nOriginal Location >>> " +  this.pathMain + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
+    		output("\nMove Location     >>> " +  tempPath + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
 			
 			//Move File from main directory to new folder
 			File fileToMove  = new File(this.pathMain + "\\" + fileNames1.get(i));
