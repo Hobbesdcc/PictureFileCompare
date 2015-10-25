@@ -1,0 +1,29 @@
+** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)
+** Version Number: v1.0 (2015-10-24)
+
+** LOG File: directory\Log1.txt
+
+----- logFileSetup() -----
+Directory used: directory
+Date & Time of Log: 2015-10-25T00:23:30.239
+--------------------------
+
+
+--- createFolder() ---
+
+(New Folder Made: directory\RAW)
+(New Folder Made: directory\JPG)
+(New Folder Made: directory\MOV)
+----------------------
+
+
+---- fileSorter() ----
+
+() File Found (i:0): Log1.txt
+Original Location >>> directory\Log1.txt
+Move Location     >>> \Log1.txt
+----------------------
+
+
+----- Matching files -----
+--------------------------

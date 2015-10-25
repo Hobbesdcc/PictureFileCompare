@@ -208,7 +208,7 @@ public class PictureFileCompare {
     public void inputDirectory(){
 		
     	System.out.print("Format e.g. ''C:\\Users\\Dave42\\Desktop\\Picturefolder'' \n");
-    	System.out.print("Input/Drop Main Directory here:");
+    	System.out.print("Input/Drop Main Directory here: ");
 		scan = new Scanner(System.in); // open a new Scanner name it "scan"
 		this.pathMain = scan.nextLine(); // set [object being acted on] = [what was input into scanner]
 		
