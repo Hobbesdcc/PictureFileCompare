@@ -1,8 +1,8 @@
-# PictureFileCompareTool
+# Picture File Compare Tool
 Script that compares two folders (jpeg & Raw) and if the jpeg is missing then it moves the raw file to a different folder
 
 -
-What the program does:
+**What the program does:**
 
 I made this because when I use my DSLR I like to shoot RAW + JPG. So that means I end up having one folder with two files with the same name (besides their file extension).
 This program sorts the RAW into one folder, JPG into another folder and MOV into another (folders are created if they don’t exist).
@@ -11,9 +11,9 @@ Now if you run the program again it will move all the RAW files that don’t hav
 
 
 -
-TO RUN:
+**TO RUN:**
 
-(Make sure to have all files backed up! Just in case)
+_(Make sure to have all files backed up! Just in case)_
 
 1. Go into the "Releases" folder and copy the whole folder for the latest version.
 
@@ -25,7 +25,7 @@ TO RUN:
 
 
 -
-Other Info:
+**Other Info:**
 
 Author: Dave Chamot
 
