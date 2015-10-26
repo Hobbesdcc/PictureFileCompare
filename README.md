@@ -1,4 +1,4 @@
-# PictureFileCompare
+# PictureFileCompareTool
 Script that compares two folders (jpeg & Raw) and if the jpeg is missing then it moves the raw file to a different folder
 
 -
