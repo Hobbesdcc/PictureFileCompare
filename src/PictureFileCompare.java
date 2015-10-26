@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -22,7 +21,7 @@ public class PictureFileCompare {
 	public PictureFileCompare() // Constructor
 	{
 		//Version Number!!
-		versionNumber ="v1.0 (2015-10-24)";
+		versionNumber ="v1.1 (2015-10-26)";
 		
 		pathMain = "";
 		path1 = "";
@@ -167,7 +166,7 @@ public class PictureFileCompare {
         		createFolder(fileObject.path1 + "\\" + saveFile,printWriter);
         		
     			//DebugCode
-        		output("Orignal Location >>> " +  fileObject.path1 + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
+        		output("Original Location >>> " +  fileObject.path1 + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
         		output("\nMove Location    >>> " +  fileObject.path1 + "\\" + saveFile + "\\" + fileNames1.get(i)+"\n", System.out, printWriter); //Debug
     			
     			//Move File from main directory to new folder that was just made
@@ -189,11 +188,13 @@ public class PictureFileCompare {
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     public static void output(final String msg, PrintStream out1, PrintWriter out2) {        
-        out1.print(msg);
+        //Output method, it prints message in console and to a log file
+    	out1.print(msg);
         out2.print(msg);
     }
     
     public void logFileSetup(PrintWriter printWriter) {
+    	//sets up log file with all info for the header
     	output("** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)\n", System.out, printWriter);
     	output("** Version Number: "+ this.versionNumber +"\n\n", System.out, printWriter);
     	
@@ -211,6 +212,8 @@ public class PictureFileCompare {
     	System.out.print("Input/Drop Main Directory here: ");
 		scan = new Scanner(System.in); // open a new Scanner name it "scan"
 		this.pathMain = scan.nextLine(); // set [object being acted on] = [what was input into scanner]
+		
+		this.pathMain = this.pathMain.replaceAll("\"",""); //Removes all the "quote" marks from the string
 		
 		//Setup the other folder paths
 		this.path1 = this.pathMain + "\\RAW";
@@ -282,34 +285,38 @@ public class PictureFileCompare {
         	String tempFileName1 = fileNames1.get(i);
     		String tempPath = "";
     		String tempFileType = "";
+    		boolean foundFileType = false; //If file tpye is found, then True
     		
     		
-    		//Figure out what type of file is being delt with
-    		if(tempFileName1.endsWith(".cr2")||tempFileName1.endsWith(".CR2")||tempFileName1.endsWith(".dng")||tempFileName1.endsWith(".DNG")){
+    		//Figure out what type of file is being dealt with
+    		if(tempFileName1.endsWith(".cr2")||tempFileName1.endsWith(".CR2")||tempFileName1.endsWith(".Cr2")||tempFileName1.endsWith(".dng")||tempFileName1.endsWith(".DNG")){
     			tempFileType = ".Cr2";
     			tempPath = this.path1;
-    		}
-    		
-    		if(tempFileName1.endsWith(".jpg") || tempFileName1.endsWith(".JPG")){
+    			foundFileType = true; 
+    			
+    		} else if(tempFileName1.endsWith(".jpg") || tempFileName1.endsWith(".JPG") || tempFileName1.endsWith(".Jpg")){
     			tempFileType = ".Jpg";
     			tempPath = this.path2;
-    		}
-    		 
-    		if(tempFileName1.endsWith(".mov") || tempFileName1.endsWith(".MOV")){
+    			foundFileType = true; 
+    			
+    		} else if(tempFileName1.endsWith(".mov") || tempFileName1.endsWith(".MOV") || tempFileName1.endsWith(".Mov")){
     			tempFileType = ".Mov";
     			tempPath = this.path3;
-    		}  		 
-             		
-    		//DebugCode	
-    		output("\n\n("+ tempFileType + ") File Found (i:"+i+"): " + fileNames1.get(i), System.out, printWriter); //Debug
-    		output("\nOriginal Location >>> " +  this.pathMain + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
-    		output("\nMove Location     >>> " +  tempPath + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
-			
-			//Move File from main directory to new folder
-			File fileToMove  = new File(this.pathMain + "\\" + fileNames1.get(i));
-			fileToMove.renameTo(new File(tempPath + "\\" + fileNames1.get(i)));
+    			foundFileType = true; 
     			
+    		}
+    		
+    		if(foundFileType==true){
+    		
+	    		//DebugCode	
+	    		output("\n\n("+ tempFileType + ") File Found (i:"+i+"): " + fileNames1.get(i), System.out, printWriter); //Debug
+	    		output("\nOriginal Location >>> " +  this.pathMain + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
+	    		output("\nMove Location     >>> " +  tempPath + "\\" + fileNames1.get(i), System.out, printWriter); //Debug
+				
+				//Move File from main directory to new folder
+				File fileToMove  = new File(this.pathMain + "\\" + fileNames1.get(i));
+				fileToMove.renameTo(new File(tempPath + "\\" + fileNames1.get(i)));
+    		}	
         }
 	}
-    
 }

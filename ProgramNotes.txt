@@ -1,15 +1,10 @@
-Fetures to add:
+Features to add:
 - Smart directory input, figures out if that is a good directory
-- remove quoutes if added like this "C:\directory"
-- no mach folder for jpg
+- no match folder for JPG
 - dose not make folders if none of that file type exist
+- warning message & does not move duplicate file
 
-moves log1 to root directory
 
-() File Found (i:0): Log1.txt
-Original Location >>> F:\DSLR Pictures\2015\2015-10-24\Log1.txt
-Move Location     >>> \Log1.txt
-
-() File Found (i:1): Log2.txt
-Original Location >>> F:\DSLR Pictures\2015\2015-10-24\Log2.txt
-Move Location     >>> \Log2.txt
+Fixed/added:
+- ignores files that are not specified file extensions
+- remove quotes if added like this "C:\directory"
