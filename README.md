@@ -11,7 +11,7 @@ Now if you run the program again it will move all the RAW files that don’t hav
 
 
 -
-TO RUN:
+TO RUN: (Make sure to have all files backed up! Just in case)
 
 1. Go into the "Releases" folder and copy the whole folder for the latest version.
 
