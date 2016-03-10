@@ -21,7 +21,7 @@ public class PictureFileCompare {
 	public PictureFileCompare() // Constructor
 	{
 		//Version Number!!
-		versionNumber ="v1.1 (2015-10-26)";
+		versionNumber ="v1.10 (2015-10-26)";
 		
 		pathMain = "";
 		path1 = "";

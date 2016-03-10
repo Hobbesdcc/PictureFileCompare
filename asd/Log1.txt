@@ -1,0 +1,25 @@
+** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)
+** Version Number: v1.1 (2015-10-26)
+
+** LOG File: asd\Log1.txt
+
+----- logFileSetup() -----
+Directory used: asd
+Date & Time of Log: 2016-03-10T02:35:34.604
+--------------------------
+
+
+--- createFolder() ---
+
+(New Folder Made: asd\RAW)
+(New Folder Made: asd\JPG)
+(New Folder Made: asd\MOV)
+----------------------
+
+
+---- fileSorter() ----
+----------------------
+
+
+----- Matching files -----
+--------------------------
