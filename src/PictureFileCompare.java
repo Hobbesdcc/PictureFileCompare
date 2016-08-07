@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class PictureFileCompare {
-
+	//Test
 	private String pathMain;
 	private String path1;
 	private String path2;
