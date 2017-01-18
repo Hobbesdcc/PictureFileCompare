@@ -19,7 +19,7 @@ _(Make sure to have all files backed up! Just in case)_
 
 2. In the "Pic File Compare Tool vX.X" folder RUN the .BAT file: "Run Pic File Compare Tool.bat", its used to start the .jar file: "PictureFileCompare-vX.X.jar"
 
-3. Drag and from the folder you want to sort on the console window OR input the file path of the directory, then hit Enter.
+3. Drag and Drop the folder you want to sort on the console window OR input the file path of the directory, then hit Enter.
 
 4. The File should sort and a Log.txt file will be made in the directory picked.
 
