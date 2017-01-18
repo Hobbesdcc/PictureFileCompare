@@ -23,7 +23,10 @@ public class PictureFileCompare {
 		//Version Number!!
 		versionNumber ="v1.10 (2015-10-26)";
 		
+		//Setup the MAIN folder path
 		pathMain = "";
+		
+		//Setup the other folder path for ex: JPG, RAW, MOV folder
 		path1 = "";
 		path2 = "";
 		path3 = "";
