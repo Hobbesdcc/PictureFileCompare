@@ -28,5 +28,6 @@ _(Make sure to have all files backed up! Just in case)_
 **Other Info:**
 
 Author: Dave C
+
 Tested on: Windows 7 & 10
 
