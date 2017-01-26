@@ -196,6 +196,7 @@ public class PictureFileCompare {
         out2.print(msg);
     }
     
+    
     public void logFileSetup(PrintWriter printWriter) {
     	//sets up log file with all info for the header
     	output("** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)\n", System.out, printWriter);
