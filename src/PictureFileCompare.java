@@ -20,9 +20,10 @@ public class PictureFileCompare {
 	//Constructor For "PictureFileCompare" Class
 	public PictureFileCompare() // Constructor
 	{
-		//Version Number!
-		//versionNumber ="v1.10 (2015-10-26)";
-		versionNumber ="v1.2 (2016-03-10)";
+		// Version Number!
+		// versionNumber ="v1.10 (2015-10-26)";
+		// versionNumber ="v1.2 (2016-03-10)";
+		versionNumber ="v1.3 (2018-05-03) Loop";
 		
 		pathMain = "";
 		path1 = "";
