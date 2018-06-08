@@ -1,0 +1,25 @@
+** PictureFile Tool: Matcher and Sorter: LOG ** (Author: Dave Chamot)
+** Version Number: v1.3 (2018-06-08) Loop
+
+** LOG File: C:\ProjectFiles\Java\workspace\PictureFileCompareTool\TEST2\Log1.txt
+
+----- logFileSetup() -----
+Directory used: C:\ProjectFiles\Java\workspace\PictureFileCompareTool\TEST2
+Date & Time of Log: 2018-06-08T14:12:20.380
+--------------------------
+
+
+--- createFolder() ---
+
+(New Folder Made: C:\ProjectFiles\Java\workspace\PictureFileCompareTool\TEST2\RAW)
+(New Folder Made: C:\ProjectFiles\Java\workspace\PictureFileCompareTool\TEST2\JPG)
+(New Folder Made: C:\ProjectFiles\Java\workspace\PictureFileCompareTool\TEST2\MOV)
+----------------------
+
+
+---- fileSorter() ----
+----------------------
+
+
+----- Matching files -----
+--------------------------
