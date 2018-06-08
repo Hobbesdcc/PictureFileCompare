@@ -28,7 +28,7 @@ public class PictureFileCompare {
 		// Version Number!
 		// versionNumber ="v1.1 (2015-10-26)";
 		// versionNumber ="v1.2 (2016-03-10)";
-		versionNumber ="v1.3 (2018-06-08) Loop";
+		versionNumber ="v1.3 (2018-06-08) Loop Feature";
 		
 		pathMain = "";
 		path1 = "";
@@ -43,6 +43,7 @@ public class PictureFileCompare {
     public static void main(String[] args) throws IOException
     {
     	
+    	//Program main Loop
     	while (mainLoop)
     	{
 	    	
@@ -204,7 +205,7 @@ public class PictureFileCompare {
 	        	fileObject = null; //Remove Object
 	        } else if (tempString.equalsIgnoreCase("no") || tempString.equalsIgnoreCase("n")) {
 	        	System.out.println("No");
-	        	mainLoop = false;
+	        	mainLoop = false; //Don't loop program again
 	        } else {
 	        	System.out.println("N/A Input");
 	        }
